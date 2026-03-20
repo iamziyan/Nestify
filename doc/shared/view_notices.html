@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notices — Nestify</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>⬡ Nestify</h1>
+    <div class="header-right">
+        <a href="https://github.com/iamziyan/Nestify" class="github-btn" target="_blank">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span>GitHub</span>
+        </a>
+    </div>
+</div>
+
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="sidebar-profile">
+            <div class="avatar">A</div>
+            <div class="name">Admin User</div>
+            <div class="role">Administrator</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="../dashboard.html"><span class="nav-icon">📊</span> Dashboard</a>
+            <div class="sidebar-divider"></div>
+            <a href="../admin/add_student.html"><span class="nav-icon">➕</span> Add Student</a>
+            <a href="../admin/view_students.html"><span class="nav-icon">👥</span> View Students</a>
+            <a href="../admin/add_room.html"><span class="nav-icon">🏠</span> Add Room</a>
+            <a href="../admin/allocate_room.html"><span class="nav-icon">🔑</span> Allocate Room</a>
+            <a href="../admin/view_requests.html"><span class="nav-icon">📩</span> Room Requests</a>
+            <a href="view_rooms.html"><span class="nav-icon">🏢</span> View Rooms</a>
+            <a href="../admin/add_notice.html"><span class="nav-icon">📢</span> Add Notice</a>
+            <a href="view_notices.html" class="active"><span class="nav-icon">📋</span> View Notices</a>
+            <a href="view_complaint.html"><span class="nav-icon">⚠️</span> View Complaints</a>
+            <div class="sidebar-divider"></div>
+            <a href="../login.html"><span class="nav-icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <h2 class="fade-in">Notices & Announcements</h2>
+        <p class="page-subtitle fade-in fade-in-delay-1">Latest hostel notices and announcements.</p>
+
+        <div class="glass-card fade-in fade-in-delay-2 mb-3">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <h3 style="margin:0;">Hostel Maintenance Scheduled</h3>
+                <span class="text-muted" style="font-size:12px;">2026-03-18</span>
+            </div>
+            <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">Water supply will be interrupted on March 22nd from 10 AM to 2 PM due to tank cleaning. Please store water in advance. We apologize for the inconvenience.</p>
+        </div>
+
+        <div class="glass-card fade-in fade-in-delay-3 mb-3">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <h3 style="margin:0;">Fee Payment Reminder</h3>
+                <span class="text-muted" style="font-size:12px;">2026-03-15</span>
+            </div>
+            <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">All students are reminded that hostel fees for the current semester are due by April 1st, 2026. Late payments will incur a Rs 200 penalty. Please pay promptly.</p>
+        </div>
+
+        <div class="glass-card fade-in fade-in-delay-4 mb-3">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <h3 style="margin:0;">New Mess Menu Launch</h3>
+                <span class="text-muted" style="font-size:12px;">2026-03-10</span>
+            </div>
+            <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">The new mess menu is now active starting this week. We've added more variety to the breakfast and dinner menus based on student feedback. Check the mess noticeboard for details.</p>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

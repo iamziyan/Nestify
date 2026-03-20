@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    background-color: #f8fafc !important;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #334155;
+}
+
+/* Modern Header */
+.header {
+    background: linear-gradient(90deg, #0f172a 0%, #0284c7 100%);
+    color: white;
+    padding: 20px 40px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #38bdf8;
+    position: relative;
+}
+
+.header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Sidebar Update */
+.menu-table {
+    width: 250px;
+    background-color: #1e293b !important;
+    height: 100vh;
+    vertical-align: top;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-table center {
+    color: #f8fafc;
+    padding: 20px 10px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.menu-table a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+    font-size: 15px;
+}
+
+.menu-table a:hover {
+    background-color: rgba(56, 189, 248, 0.05);
+    color: white;
+    border-left: 4px solid #38bdf8;
+    transform: translateX(4px);
+}
+
+/* Main Content Area */
+.content-table {
+    padding: 40px;
+    vertical-align: top;
+    background-color: #f8fafc;
+}
+
+.content-table h2 {
+    color: #0f172a;
+    font-weight: 700;
+    margin-top: 0;
+    border-bottom: 3px solid #0284c7;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Forms & Tables Upgrade */
+table {
+    border-collapse: collapse;
+}
+
+.content-table table, center > form > table {
+    background-color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin-top: 15px;
+    overflow: hidden;
+    width: 100%;
+}
+
+center > form > table {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-table table td, center > form > table td {
+    padding: 15px 20px;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+th, tr[bgcolor="#cccccc"], td[bgcolor="#cccccc"] {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 15px;
+    text-align: left;
+}
+
+/* Stylish Error and Success Boxes */
+td[bgcolor='yellow'] {
+    background-color: rgba(239, 68, 68, 0.08) !important;
+}
+td[bgcolor='lightgreen'] {
+    background-color: rgba(16, 185, 129, 0.08) !important;
+}
+marquee[bgcolor="yellow"] {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+    color: #d97706 !important;
+    border-left: 4px solid #f59e0b;
+}
+
+/* Inputs & Buttons Effect */
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], select, textarea {
+    width: 95%;
+    padding: 12px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+input[type="submit"] {
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(2, 132, 199, 0.4);
+}
+
+/* Typography and Utility Fixes */
+center > h2 {
+    color: #0f172a;
+    margin-top: 50px;
+    font-size: 28px;
+}
+
+marquee {
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284c7 !important;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    border-left: 4px solid #0284c7;
+    margin-top: 20px;
+}
+
+a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.menu-table a:hover {
+    text-decoration: none;
+}
+
+/* Modernize legacy font tags */
+font[color="red"] { color: #ef4444 !important; }
+font[color="green"] { color: #10b981 !important; }
+font[color="blue"] { color: #3b82f6 !important; }
+font[color="purple"] { color: #8b5cf6 !important; }
+.menu-table font[color="red"] { color: #f87171 !important; }
