@@ -1,151 +1,123 @@
-# Nestify
+# ⬡ Nestify: Premium Hostel Management System
 
-A complete Nestify built with **PHP** & **MySQL** — designed as a BCA/B.Tech college project. Features role-based access for Admins and Students, room management, fee payments with detailed receipts, complaint tracking, and more.
+A state-of-the-art **Nestify** built with **PHP** & **MySQL**. This project has been modernized with a premium tech-themed design system, featuring glassmorphism, dark mode, and high-performance interactive components.
 
-Compatible with **XAMPP**, **WAMP**, and all servers running **PHP 5.4+** & **MySQL 5.x+**.
+Designed as a BCA/B.Tech college project with production-grade aesthetics. Features role-based access for Admins and Students, comprehensive room logistics, automated fee auditing, and real-time complaint tracking.
 
 ---
 
-## Features
+## ✨ Premium UI Features
+
+- **Glassmorphism**: Translucent UI elements with multi-layer blur effects.
+- **Modern Tech Stack Design**: Deep charcoal and navy palettes with vibrant cyan and purple accents.
+- **Animated Interface**: Shimmering headers, pulse status indicators, and smooth entrance transitions.
+- **App Layout**: Structured sidebar-based navigation for a professional ERP feel.
+- **Data Tables**: High-density information display with status-aware badges.
+
+---
+
+## 🛠️ Features
 
 ### Admin Panel
-- Add, view, and edit student records
-- Add, edit, and delete rooms (with Boy/Girl gender type)
-- Allocate rooms to students
-- Approve/Reject room requests from students
-- Post notices and announcements
-- View, accept, or reject student complaints (with category filters)
-- Dashboard with live complaint statistics (Pending / Completed / Rejected)
+- **Dashboard**: Live statistics with visual status tracking for complaints and requests.
+- **Student Center**: Add, view, and edit detailed student profiles and fee structures.
+- **Room Engine**: Manage room types (Boy/Girl), capacity, and occupancy.
+- **Allocation System**: Intelligent room assignment and request approval workflow.
+- **Global Broadcast**: Post system-wide notices and announcements.
+- **Complaint Management**: Filter and resolve student issues with a dedicated resolution suite.
 
 ### Student Portal
-- Register and login to personal dashboard
-- View assigned room details and leave room option
-- Request available rooms or join a waitlist
-- Pay hostel fee (Room Rent + Mess Fee + Maintenance Fee)
-- View detailed fee receipts with full breakdown
-- Submit complaints and track their status
-- View hostel notices
+- **Smart Dashboard**: Instant view of assigned room status and personal metadata.
+- **Room Booking**: Brows available rooms and submit allocation requests.
+- **Digital Wallet**: Pay hostel fees (Rent, Mess, Maintenance) and download auto-generated **PDF-style receipts**.
+- **Support Desk**: Lodge complaints and track resolution progress in real-time.
+- **Notice Board**: Stay updated with the latest hostel announcements.
 
 ---
 
-## Tech Stack
+## 💻 Tech Stack
 
-| Technology | Version |
-|---|---|
-| PHP | 5.4+ (compatible up to 8.x) |
-| MySQL | 5.x+ |
-| HTML | 5 |
-| CSS | 3 |
-| Server | XAMPP / WAMP / Any Apache+PHP+MySQL |
+| Technology | Role | Version |
+|---|---|---|
+| **PHP** | Backend Logic | 5.4+ (Compatible with 8.x) |
+| **MySQL** | Database Engine | 5.x+ |
+| **CSS3** | Premium Design System | Custom Modern Theme |
+| **HTML5** | Semantic Structure | Latest |
+| **Server** | Local Environment | XAMPP / WAMP / Apache |
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-Hostel Management/
-├── admin/
-│   ├── add_notice.php
-│   ├── add_room.php
-│   ├── add_student.php
-│   ├── allocate_room.php
-│   ├── edit_room.php
-│   ├── edit_student.php
-│   ├── view_requests.php
-│   └── view_students.php
-├── css/
-│   └── style.css
-├── database/
-│   └── database.sql
-├── includes/
-│   └── config.php
-├── shared/
-│   ├── view_complaint.php
-│   ├── view_notices.php
-│   └── view_rooms.php
-├── student/
-│   ├── add_complaint.php
-│   ├── pay_fee.php
-│   └── view_receipt.php
-├── dashboard.php
-├── index.php
-├── login.php
-├── logout.php
-├── register.php
-└── README.md
+Nestify/
+├── admin/               # Administrative Management Suite
+├── css/                 # Premium Design System (style.css)
+├── database/            # Schema and SQL Imports
+├── docs/                # Static UI Demo (HTML version)
+├── includes/            # Core configuration & DB Connection
+├── shared/              # Reusable Views (Notices, Rooms, Complaints)
+├── student/             # Student Portal Pages
+├── dashboard.php        # Unified Role-based Dashboard
+├── index.php            # Entry Point & Redirector
+├── login.php            │ Modernized Auth Flow
+├── logout.php           │ Session Management
+└── register.php         │ New Student Onboarding
 ```
 
 ---
 
-## How to Run
+## 🚀 How to Run
 
-### Step 1: Setup Server
-- Install **XAMPP** or **WAMP** on your system.
-- Start **Apache** and **MySQL** from the control panel.
+### 1. Setup Environment
+- Install **XAMPP** or **WAMP**.
+- Ensure **Apache** and **MySQL** services are active.
 
-### Step 2: Copy Project
-- Copy the entire `Hostel Management` folder into your server's root directory:
-  - **XAMPP:** `C:\xampp\htdocs\`
-  - **WAMP:** `C:\wamp\www\`
+### 2. Deployment
+- Clone/Copy the `Nestify` folder into your server root:
+  - **XAMPP:** `htdocs/Nestify/`
+  - **WAMP:** `www/Nestify/`
 
-### Step 3: Create Database
-1. Open **phpMyAdmin** → `http://localhost/phpmyadmin`
-2. Import the file `database/database.sql` — it will automatically create the `hostel_db` database and all required tables.
+### 3. Database Initialization
+1. Navigate to **phpMyAdmin** (`http://localhost/phpmyadmin`).
+2. Create a database named `hostel_db`.
+3. Import `database/database.sql` to generate tables and sample data.
 
-### Step 4: Run Gender Migration (One-Time)
-- Open `http://localhost/Hostel%20Management/update_gender.php` in your browser once.
-- This adds the `gender` column to the rooms table and updates student gender values.
-- You can delete `update_gender.php` after running it.
-
-### Step 5: Open the Application
-- Visit: `http://localhost/Hostel%20Management/`
+### 4. Application Access
+- Visit: `http://localhost/Nestify/`
 
 ---
 
-## Default Login Credentials
+## 🔑 Default Credentials
 
-### Admin
-| Field | Value |
+### Administrative Access
+- **Email**: `admin@hostel.com`
+- **Password**: `admin123`
+
+### Standard Student Access
+- **Email**: `test@test.com`
+- **Password**: `student123`
+
+> [!IMPORTANT]  
+> New student accounts created by Admin use their **Roll Number** as the initial default password.
+
+---
+
+## 📑 Database Schema
+
+| Table | High-Level Purpose |
 |---|---|
-| Email | `admin@hostel.com` |
-| Password | `admin123` |
-
-### Student
-| Field | Value |
-|---|---|
-| Email | `test@test.com` |
-| Password | `student123` |
-
-> **Note:** When an admin adds a new student, the default password is the student's **Roll Number**.
+| `users` | Secure authentication and RBAC |
+| `students` | Profile data, financial state, and room links |
+| `rooms` | Inventory management and gender-based grouping |
+| `fees` | Transactional history and auditing |
+| `complaints` | Issue tracking and resolution lifecycle |
+| `notices` | System-wide broadcasting |
+| `room_requests` | Allocation queue and waitlist logic |
 
 ---
 
-## Database Tables
+## ⚖️ License
 
-| Table | Purpose |
-|---|---|
-| `users` | Login credentials and roles (admin/student) |
-| `students` | Student profiles, room assignments, fee details |
-| `rooms` | Room info, capacity, available beds, gender type |
-| `fees` | Payment history with fee breakdown |
-| `complaints` | Student complaints with status tracking |
-| `notices` | Hostel announcements and notices |
-| `room_requests` | Room request/waitlist management |
+Developed by **@iamziyan**. Optimized for educational excellence and modern web standards.
 
----
-
-## Fee Structure
-
-Each student has a configurable fee breakdown:
-- **Room Rent** (default: Rs 2000)
-- **Mess Fee** (default: Rs 2500)
-- **Maintenance Fee** (default: Rs 500)
-- **Total**: Rs 5000 per year
-
-Admins can customize these amounts per student via the Edit Student page.
-
----
-
-## License
-
-This project is for **educational purposes only**.
