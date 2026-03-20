@@ -50,92 +50,133 @@ $query = "
 ";
 $result = mysqli_query($conn, $query);
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Room Requests - Admin Dashboard</title>
-<link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Requests — Nestify</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body bgcolor="#f0f8ff">
+<body>
 
 <div class="header">
-    <h1>Nestify</h1>
+    <a href="../index.php" style="text-decoration:none;"><h1>⬡ Nestify</h1></a>
+    <div class="header-right">
+        <a href="https://github.com/iamziyan/Nestify" class="github-btn" target="_blank">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span>GitHub</span>
+        </a>
+    </div>
 </div>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr>
-    <td class="menu-table">
-        <center>
-            <br><b>Welcome <?php echo $_SESSION['name']; ?></b><br>
-            <font color="red">Role: <?php echo $_SESSION['role']; ?></font>
-            <br><br>
-        </center>
-        <a href="../dashboard.php">Dashboard Home</a>
-        <a href="add_student.php">Add Student</a>
-        <a href="view_students.php">View Students</a>
-        <a href="add_room.php">Add Room</a>
-        <a href="allocate_room.php">Allocate Room</a>
-        <a href="view_requests.php">Room Requests</a>
-        <a href="../shared/view_rooms.php">View Rooms</a>
-        <a href="add_notice.php">Add Notice</a>
-        <a href="../shared/view_notices.php">View Notices</a>
-        <a href="../shared/view_complaint.php">View All Complaints</a>
-        <a href="../logout.php">Logout</a>
-    </td>
-    <td class="content-table" valign="top">
-        <h2>Process Room Requests</h2>
-        <hr>
-        <?php 
-        if(isset($msg)) echo "<font color='green'><b>$msg</b></font><br><br>"; 
-        if(isset($error)) echo "<font color='red'><b>$error</b></font><br><br>"; 
-        ?>
-        <table border="1" cellpadding="10" bgcolor="white" width="100%">
-            <tr bgcolor="#cccccc">
-                <th>Req ID</th>
-                <th>Student</th>
-                <th>Roll No</th>
-                <th>Requested Room</th>
-                <th>Beds Left</th>
-                <th>Request Date</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            <?php
-            if($result) {
-                while($row = mysqli_fetch_array($result)) {
-                    echo "<tr>";
-                    echo "<td>#".$row['req_id']."</td>";
-                    echo "<td>".$row['student_name']."</td>";
-                    echo "<td>".$row['roll_no']."</td>";
-                    echo "<td>".$row['room_no']."</td>";
-                    echo "<td>".$row['available_beds']."</td>";
-                    echo "<td>".$row['request_date']."</td>";
-                    
-                    if($row['status'] == 'Pending') {
-                        echo "<td bgcolor='lightgreen'><font color='green'>".$row['status']."</font></td>";
-                    } else {
-                        echo "<td bgcolor='yellow'><font color='red'>".$row['status']."</font></td>";
-                    }
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="sidebar-profile">
+            <div class="avatar"><?php echo substr($_SESSION['name'], 0, 1); ?></div>
+            <div class="name"><?php echo $_SESSION['name']; ?></div>
+            <div class="role"><?php echo $_SESSION['role']; ?></div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="../dashboard.php"><span class="nav-icon">📊</span> Dashboard</a>
+            <div class="sidebar-divider"></div>
+            <?php if($_SESSION['role'] == 'admin') { ?>
+                <a href="../admin/add_student.php"><span class="nav-icon">➕</span> Add Student</a>
+                <a href="../admin/view_students.php"><span class="nav-icon">👥</span> View Students</a>
+                <a href="../admin/add_room.php"><span class="nav-icon">🏠</span> Add Room</a>
+                <a href="../admin/allocate_room.php"><span class="nav-icon">🔑</span> Allocate Room</a>
+                <a href="../admin/view_requests.php" class="active"><span class="nav-icon">📩</span> Room Requests</a>
+                <a href="../shared/view_rooms.php"><span class="nav-icon">🏢</span> View Rooms</a>
+                <a href="../admin/add_notice.php"><span class="nav-icon">📢</span> Add Notice</a>
+                <a href="../shared/view_notices.php"><span class="nav-icon">📋</span> View Notices</a>
+                <a href="../shared/view_complaint.php"><span class="nav-icon">⚠️</span> View Complaints</a>
+            <?php } else { ?>
+                <a href="../shared/view_rooms.php"><span class="nav-icon">🏢</span> View Rooms</a>
+                <a href="../student/pay_fee.php"><span class="nav-icon">💳</span> Pay Fee</a>
+                <a href="../student/add_complaint.php"><span class="nav-icon">✍️</span> Submit Complaint</a>
+                <a href="../shared/view_complaint.php"><span class="nav-icon">⚠️</span> My Complaints</a>
+                <a href="../shared/view_notices.php"><span class="nav-icon">📢</span> Notices</a>
+            <?php } ?>
+            <div class="sidebar-divider"></div>
+            <a href="../logout.php"><span class="nav-icon">🚪</span> Logout</a>
+        </nav>
+    </aside>
 
-                    echo "<td>";
-                    echo "<form method='post' action='' style='margin:0;'>";
-                    echo "<input type='hidden' name='req_id' value='".$row['req_id']."'>";
-                    if($row['available_beds'] > 0) {
-                        echo "<button type='submit' name='action_request' value='true' onclick='this.form.action_type.value=\"approve\";' style='background-color:#10b981; color:white; border:none; padding:5px 10px; cursor:pointer;'>Approve</button> ";
-                    } else {
-                        echo "<button type='button' disabled style='background-color:#ccc; color:#666; border:none; padding:5px 10px;'>No Beds</button> ";
+    <main class="main-content">
+        <h2 class="fade-in">Process Room Requests</h2>
+        <p class="page-subtitle fade-in fade-in-delay-1">Review and approve student accommodation requests.</p>
+
+        <?php if(isset($msg)) { ?>
+            <div class="glass-card fade-in mb-4" style="border-left: 4px solid var(--success); padding: 16px; color: var(--success); background: rgba(16, 185, 129, 0.05);">
+                ✅ <?php echo $msg; ?>
+            </div>
+        <?php } ?>
+        
+        <?php if(isset($error)) { ?>
+            <div class="glass-card fade-in mb-4" style="border-left: 4px solid var(--danger); padding: 16px; color: var(--danger); background: rgba(239, 68, 68, 0.05);">
+                ❌ <?php echo $error; ?>
+            </div>
+        <?php } ?>
+
+        <div class="glass-card fade-in fade-in-delay-2 p-0 overflow-hidden">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width:80px;">Req ID</th>
+                        <th>Student</th>
+                        <th style="width:120px;">Requested Room</th>
+                        <th style="width:100px;">Beds Left</th>
+                        <th style="width:130px;">Request Date</th>
+                        <th style="width:120px;">Status</th>
+                        <th style="width:180px; text-align:center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                if(mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_array($result)) {
+                        echo "<tr>";
+                        echo "<td style='color:var(--text-secondary); font-family:monospace;'>#".$row['req_id']."</td>";
+                        echo "<td>
+                                <div style='font-weight:600;'>".$row['student_name']."</div>
+                                <div style='font-size:11px; color:var(--text-secondary);'>".$row['roll_no']."</div>
+                              </td>";
+                        echo "<td><strong style='color:var(--accent);'>Room ".$row['room_no']."</strong></td>";
+                        echo "<td style='font-weight:600;'>".$row['available_beds']."</td>";
+                        echo "<td style='font-size:12px; color:var(--text-secondary);'>".$row['request_date']."</td>";
+                        
+                        $status = $row['status'];
+                        $badge_class = ($status == 'Pending') ? 'badge-success' : 'badge-warning';
+                        echo "<td><span class='badge $badge_class'>$status</span></td>";
+
+                        echo "<td style='text-align:center;'>";
+                        echo "<form method='post' action='' style='margin:0; display:flex; gap:5px; justify-content:center;'>";
+                        echo "<input type='hidden' name='req_id' value='".$row['req_id']."'>";
+                        echo "<input type='hidden' name='action_type' id='action_type_".$row['req_id']."' value=''>";
+                        
+                        if($row['available_beds'] > 0) {
+                            echo "<button type='submit' name='action_request' value='true' onclick='document.getElementById(\"action_type_".$row['req_id']."\").value=\"approve\";' class='btn btn-success' style='padding:5px 10px; font-size:11px;'>Approve</button>";
+                        } else {
+                            echo "<button type='button' disabled class='btn' style='background:rgba(255,255,255,0.05); color:var(--text-secondary); cursor:not-allowed; padding:5px 10px; font-size:11px;'>Full</button>";
+                        }
+                        
+                        echo "<button type='submit' name='action_request' value='true' onclick='document.getElementById(\"action_type_".$row['req_id']."\").value=\"reject\";' class='btn btn-danger' style='padding:5px 10px; font-size:11px;'>Reject</button>";
+                        echo "</form>";
+                        echo "</td>";
+                        echo "</tr>";
                     }
-                    echo "<button type='submit' name='action_request' value='true' onclick='this.form.action_type.value=\"reject\";' style='background-color:#ef4444; color:white; border:none; padding:5px 10px; cursor:pointer;'>Reject</button>";
-                    echo "<input type='hidden' name='action_type' value=''>";
-                    echo "</form>";
-                    echo "</td>";
-                    echo "</tr>";
+                } else {
+                    echo "<tr><td colspan='7' style='text-align:center; padding:40px; color:var(--text-secondary);'>No pending room requests found.</td></tr>";
                 }
-            }
-            ?>
-        </table>
-    </td>
-</tr>
-</table>
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
 
 </body>
 </html>

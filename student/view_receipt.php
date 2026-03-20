@@ -26,105 +26,196 @@ if($_SESSION['role'] == 'student') {
     }
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Hostel Fee Receipt</title>
-<style>
-body { font-family: Arial, sans-serif; background-color: #f0f8ff; }
-.receipt-container {
-    width: 600px;
-    margin: 50px auto;
-    background: white;
-    padding: 30px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.header-text { text-align: center; }
-.header-text h1 { margin: 0; color: #333; }
-.header-text p { margin: 5px 0; color: #666; }
-.details-table, .fee-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-.details-table td { padding: 5px; }
-.fee-table th, .fee-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-.fee-table th { background-color: #f5f5f5; }
-.total-row { font-weight: bold; background-color: #f9f9f9; }
-.footer-text { margin-top: 40px; text-align: center; color: #888; font-size: 12px; }
-.back-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 3px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt #<?php echo str_pad($receipt['id'], 6, '0', STR_PAD_LEFT); ?> — Nestify</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .receipt-card {
+            max-width: 700px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .receipt-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+        }
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        .receipt-logo h1 {
+            color: var(--accent);
+            margin: 0;
+            font-size: 28px;
+        }
+        .receipt-info {
+            text-align: right;
+        }
+        .receipt-info div {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        .receipt-info .receipt-number {
+            font-family: monospace;
+            font-size: 16px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        .student-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .detail-item label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .detail-item span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .items-table th {
+            text-align: left;
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .items-table td {
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        .total-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .total-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+        .total-box label {
+            display: block;
+            font-size: 12px;
+            color: var(--success);
+            margin-bottom: 5px;
+        }
+        .total-box span {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        @media print {
+            .back-btn, .header-right, .sidebar { display: none !important; }
+            .receipt-card { border: 1px solid #ccc; color: black; background: white; box-shadow: none; }
+            body { background: white; }
+        }
+    </style>
 </head>
-<body>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
 
-<div class="receipt-container">
-    <div class="header-text">
-        <h1>Nestify</h1>
-        <p>Official Fee Receipt</p>
-        <p>Receipt No: #<?php echo str_pad($receipt['id'], 6, '0', STR_PAD_LEFT); ?></p>
-        <p>Date: <?php echo date('d M Y', strtotime($receipt['date'])); ?></p>
+    <div class="glass-card receipt-card fade-in">
+        <div class="receipt-header">
+            <div class="receipt-logo">
+                <h1>⬡ Nestify</h1>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 5px 0 0 0;">Hostel Management System</p>
+            </div>
+            <div class="receipt-info">
+                <div>Receipt Number</div>
+                <div class="receipt-number">#<?php echo str_pad($receipt['id'], 6, '0', STR_PAD_LEFT); ?></div>
+                <div style="margin-top: 10px;">Date: <?php echo date('d M Y', strtotime($receipt['date'])); ?></div>
+            </div>
+        </div>
+
+        <div class="student-details">
+            <div class="detail-item">
+                <label>Student Name</label>
+                <span><?php echo $receipt['name']; ?></span>
+            </div>
+            <div class="detail-item">
+                <label>Roll Number</label>
+                <span><?php echo $receipt['roll_no']; ?></span>
+            </div>
+            <div class="detail-item">
+                <label>College</label>
+                <span><?php echo $receipt['college_name']; ?></span>
+            </div>
+            <div class="detail-item">
+                <label>Room Assignment</label>
+                <span><?php echo ($receipt['room_id'] > 0) ? "Room #".$receipt['room_id'] : "N/A"; ?></span>
+            </div>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th style="text-align: right;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hostel Room Rent (Annual)</td>
+                    <td style="text-align: right;">Rs <?php echo isset($receipt['room_rent']) ? $receipt['room_rent'] : 0; ?></td>
+                </tr>
+                <tr>
+                    <td>Mess & Catering Fee</td>
+                    <td style="text-align: right;">Rs <?php echo isset($receipt['mess_fee']) ? $receipt['mess_fee'] : 0; ?></td>
+                </tr>
+                <tr>
+                    <td>Maintenance & Facility Charges</td>
+                    <td style="text-align: right;">Rs <?php echo isset($receipt['maintenance_fee']) ? $receipt['maintenance_fee'] : 0; ?></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <div class="total-box">
+                <label>Total Amount Paid</label>
+                <span>Rs <?php echo isset($receipt['total_amount']) && $receipt['total_amount'] > 0 ? $receipt['total_amount'] : $receipt['amount']; ?></span>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center; border-top: 1px dashed var(--border-color); padding-top: 20px;">
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">This is a system-generated electronic receipt. No signature required.</p>
+            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+                <a href="javascript:history.back()" class="btn btn-secondary back-btn">← Back</a>
+                <button onclick="window.print()" class="btn btn-primary back-btn">🖨️ Print Receipt</button>
+            </div>
+        </div>
     </div>
-    
-    <hr>
-    
-    <table class="details-table">
-        <tr>
-            <td><b>Student Name:</b></td><td><?php echo $receipt['name']; ?></td>
-            <td><b>Roll No:</b></td><td><?php echo $receipt['roll_no']; ?></td>
-        </tr>
-        <tr>
-            <td><b>College:</b></td><td><?php echo $receipt['college_name']; ?></td>
-            <td><b>Room No:</b></td><td><?php echo ($receipt['room_id'] > 0) ? $receipt['room_id'] : "N/A"; ?></td>
-        </tr>
-    </table>
-    
-    <table class="fee-table">
-        <tr>
-            <th>S.No</th>
-            <th>Particulars</th>
-            <th style="text-align: right;">Amount (Rs)</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Room Rent</td>
-            <td style="text-align: right;"><?php echo isset($receipt['room_rent']) ? $receipt['room_rent'] : 0; ?></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Mess Fee</td>
-            <td style="text-align: right;"><?php echo isset($receipt['mess_fee']) ? $receipt['mess_fee'] : 0; ?></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Maintenance Fee</td>
-            <td style="text-align: right;"><?php echo isset($receipt['maintenance_fee']) ? $receipt['maintenance_fee'] : 0; ?></td>
-        </tr>
-        <tr class="total-row">
-            <td colspan="2" style="text-align: right;">Total Amount Paid</td>
-            <td style="text-align: right;">Rs <?php echo isset($receipt['total_amount']) && $receipt['total_amount'] > 0 ? $receipt['total_amount'] : $receipt['amount']; ?></td>
-        </tr>
-    </table>
-    
-    <div class="footer-text">
-        <p>This is a computer-generated receipt.</p>
-    </div>
-    
-    <center>
-        <a href="javascript:history.back()" class="back-btn">Go Back</a>
-    </center>
-</div>
+
+</body>
+</html>
 
 </body>
 </html>

@@ -31,76 +31,88 @@ if(isset($_POST['register'])) {
     }
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Register - Nestify</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Nestify</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body bgcolor="#f0f8ff">
+<body>
 
 <div class="header">
-    <h1>Nestify</h1>
+    <a href="index.php" style="text-decoration:none;"><h1>⬡ Nestify</h1></a>
+    <div class="header-right">
+        <a href="https://github.com/iamziyan/Nestify" class="github-btn" target="_blank">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span>GitHub</span>
+        </a>
+    </div>
 </div>
 
-<center>
-    <br><br><br>
-    <h2>Student Registration</h2>
-    <form method="post" action="">
-        <table border="1" cellpadding="10" cellspacing="0" bgcolor="white" width="400">
-            <tr>
-                <td colspan="2" align="center" bgcolor="#cccccc"><b>Register Here</b></td>
-            </tr>
-            <tr>
-                <td><b>Full Name:</b></td>
-                <td><input type="text" name="name" required></td>
-            </tr>
-            <tr>
-                <td><b>College Name:</b></td>
-                <td><input type="text" name="college_name" required></td>
-            </tr>
-            <tr>
-                <td><b>Roll No:</b></td>
-                <td><input type="text" name="roll_no" required></td>
-            </tr>
-            <tr>
-                <td><b>Email:</b></td>
-                <td><input type="email" name="email" required></td>
-            </tr>
-            <tr>
-                <td><b>Phone:</b></td>
-                <td><input type="text" name="phone" required></td>
-            </tr>
-            <tr>
-                <td><b>Gender:</b></td>
-                <td>
-                    <select name="gender" required>
+<div class="form-container fade-in">
+    <div class="form-card">
+        <div class="form-header">
+            <h3>🎓 Student Registration</h3>
+        </div>
+        <div class="form-body">
+            <form method="post" action="">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="college">College Name</label>
+                    <input type="text" id="college" name="college_name" placeholder="MIT Engineering College" required>
+                </div>
+                <div class="form-group">
+                    <label for="roll">Roll Number</label>
+                    <input type="text" id="roll" name="roll_no" placeholder="2024BCA001" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="student@college.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
                         <option value="Boy">Boy</option>
                         <option value="Girl">Girl</option>
                         <option value="Other">Other</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td><b>Password:</b></td>
-                <td><input type="password" name="password" required></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <?php if(isset($error)) { ?>
+                    <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger); padding: 12px; margin-bottom: 20px; color: #f87171; font-size: 14px; font-weight: 600;">
+                        ⚠️ <?php echo $error; ?>
+                    </div>
+                <?php } ?>
+                
+                <?php if(isset($success)) { ?>
+                    <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--success); padding: 12px; margin-bottom: 20px; color: #34d399; font-size: 14px; font-weight: 600;">
+                        ✅ <?php echo $success; ?>
+                    </div>
+                <?php } ?>
+
+                <div class="text-center">
                     <input type="submit" name="register" value="Register Now">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    Already have an account? <a href="login.php">Login here</a>
-                </td>
-            </tr>
-            <?php 
-            if(isset($error)) { echo "<tr><td colspan='2' align='center' bgcolor='yellow'><font color='red'><b>$error</b></font></td></tr>"; }
-            if(isset($success)) { echo "<tr><td colspan='2' align='center' bgcolor='lightgreen'><font color='green'><b>$success</b></font></td></tr>"; }
-            ?>
-        </table>
-    </form>
-</center>
+                </div>
+            </form>
+        </div>
+        <div class="form-footer">
+            Already have an account? <a href="login.php">Login here</a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
